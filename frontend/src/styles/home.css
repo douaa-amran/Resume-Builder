@@ -1,0 +1,57 @@
+/* App.css */
+.content-container {
+  display: grid;
+  grid-template-columns: 30% 50% 20%;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0 0 2rem;
+}
+
+.menu {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    box-shadow: 2px 3.5px 9px 2.5px #dddddd;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .menu-icon {
+    font-size: 20px;
+  }
+  
+  .menu-label {
+    font-size: 16px;
+    color: #333;
+  }
+  .form {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cv-preview {
+    width: 320px;
+    height: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
