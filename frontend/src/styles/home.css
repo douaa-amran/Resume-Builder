@@ -1,7 +1,7 @@
 /* App.css */
 .content-container {
   display: grid;
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 25% 50% 25%;
   justify-content: center;
   gap: 1rem;
   margin: 1rem 0 0 2rem;
@@ -47,9 +47,9 @@
   }
   
   .cv-preview {
-    width: 320px;
+    width: 395px;
     height: 100%;
-    padding: 20px;
+    padding: 10px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Router, Routes, useLocation } from "react-router-dom";
 import "./App.css";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import BuilderPage from "./pages/BuilderPage";
 
 function App() {
+  const location = useLocation();
+  
+  const isLoginRoute = location.pathname === "/login" || location.pathname === "/register";
+
   return (
-    <div className="container">
+    <div className={`${isLoginRoute ? 'bg-[#8E3E63] min-h-screen flex justify-center items-center' : ''}`}>
       <Routes>
-        {/*<Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />*/}
+        <Route path="/login" element={<Login />} />
+         <Route path="/register" element={<Register />} />
         <Route path="/builder" element={<BuilderPage />} />
       </Routes>
     </div>

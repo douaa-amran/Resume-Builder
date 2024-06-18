@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <div>
             <nav class="bg-white border-gray-200 " >
-                <div class=" flex items-center justify-end -mx-44 py-6" style={{"background":"#8E3E63"}}>
+                <div class=" flex items-center justify-end -mx-40 py-6" style={{"background":"#8E3E63"}}>
                     <div class="hidden w-full md:block md:w-auto">
                         <ul class="font-medium flex flex-col gap-8 p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white " style={{"background":"#8E3E63"}}>
                             <li>
