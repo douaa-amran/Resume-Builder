@@ -1,19 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import { Route, Router, Routes } from "react-router-dom";
+import "./App.css";
+import BuilderPage from "./pages/BuilderPage";
 
 function App() {
-
   return (
     <div className="container">
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/books" element={<Books />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/auth/:type" element={<Auth />} />
-    </Routes>
-  </div>
-  )
+      <Routes>
+        {/*<Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />*/}
+        <Route path="/builder" element={<BuilderPage />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
