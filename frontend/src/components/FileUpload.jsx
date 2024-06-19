@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
+import Header from './Header';
+import "../App.css";
+
 
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -36,18 +39,26 @@ const FileUpload = () => {
 
   return (
     <div>
-      <h1>Upload CV</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        <button type="submit">Upload</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {response && (
-        <div>
-          <h2>Extracted Information</h2>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-        </div>
-      )}
+      <Header/>
+      <div className="upload-container">
+  <h1>Upload CV</h1>
+  <form onSubmit={handleSubmit}>
+    <label className="custom-file-upload">
+      <input type="file" onChange={handleFileChange} />
+      Choose file
+    </label>
+    <button type="submit">Upload</button>
+  </form>
+  {error && <p className="error-message">{error}</p>}
+  {response && (
+    <div className="response-container">
+      <h2>Extracted Information</h2>
+      <pre>{JSON.stringify(response, null, 2)}</pre>
+    </div>
+  )}
+</div>
+
+
     </div>
   );
 };

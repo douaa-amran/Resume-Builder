@@ -5,6 +5,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import BuilderPage from "./pages/BuilderPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import FileUpload from "./components/FileUpload";
 
 function App() {
   const location = useLocation();
@@ -24,13 +25,12 @@ function App() {
         <Route
           path="/login"
           element={
-            <ProtectedRoute>
               <Login />
-            </ProtectedRoute>
           }
         />
         <Route path="/register" element={<Register />} />
         <Route path="/builder" element={<BuilderPage />} />
+        <Route path="/ExtractJson" element={<FileUpload />} />
       </Routes>
     </div>
   );

@@ -5,6 +5,7 @@ import { hashPassword, comparePassword } from "../utils/passwordUtils.js";
 
 // Handles new user registration
 export async function registerUser(req, res) {
+
   const { email, password } = req.body; // Extract email and password from request body
 
   try {
@@ -46,7 +47,7 @@ export async function loginUser(req, res) {
     // Create a JWT payload and generate a token
     const payload = { userId: user._id };
     const token = jwt.sign(payload, jwtSecret, {
-      expiresIn: "1h",
+      expiresIn: "5h",
     });
     // Respond with the generated token
     res.json({ token });
@@ -56,10 +57,18 @@ export async function loginUser(req, res) {
   }
 }
 
-export const  logout_User = async(req, res) => {
-  
-  const token = req.headers.authorization.split(' ')[1];
-  const decodedToken = jwt.verify(token, 'passwordkey');
-  const newToken = jwt.sign({ userId: decodedToken.userId }, 'passwordkey', { expiresIn: '0s' });
-  res.json({ token: newToken });
-} 
+export const logout_User = async (req, res) => {
+  try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, jwtSecret);
+    const newToken = jwt.sign({ userId: decodedToken.userId }, jwtSecret, { expiresIn: '0s' });
+    res.json({ token: newToken });
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      res.status(401).json({ message: 'Token expired' });
+    } else {
+      console.error('Error during logout:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
+};

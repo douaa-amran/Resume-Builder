@@ -3,3 +3,72 @@
   margin: 0;
   box-sizing: border-box;
 }
+.upload-container {
+  max-width: 600px;
+  margin: 50px auto 20px; /* Adjust the top margin to create space from the header */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+
+.upload-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.custom-file-upload {
+  border: 2px solid #e91e63; /* rose color border */
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none; /* hide the default file input */
+}
+
+button[type="submit"] {
+  background-color: #e91e63; /* rose color background */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  opacity: 0.9;
+}
+
+.error-message {
+  color: red;
+}
+
+.response-container {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.response-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.response-container pre {
+  white-space: pre-wrap;
+  font-size: 14px;
+}

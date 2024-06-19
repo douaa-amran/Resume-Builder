@@ -33,9 +33,10 @@ export default function Header() {
               class="font-medium flex flex-col gap-8 p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white "
               style={{ background: "#8E3E63" }}
             >
-              <li>
+            
+            <li>
                 <a
-                  href="#"
+                  href="/ExtractJson"
                   class="block py-2 px-4 text-white rounded-2xl hover:bg-gray-100 md:hover:bg-transparent md:border-0 "
                   style={{ background: "#D2649A" }}
                 >
@@ -43,22 +44,21 @@ export default function Header() {
                     class="fa-solid fa-users"
                     style={{ paddingRight: "10px" }}
                   ></i>
-                  About Us
+                  JSON Extractor From CV
                 </a>
-              </li>
-              <li>
+              </li> <li>
                 <a
-                  href="#"
+                  href="/builder"
                   class="block py-2 px-4 text-white rounded-2xl hover:bg-gray-100 md:hover:bg-transparent md:border-0 "
                   style={{ background: "#D2649A" }}
                 >
                   <i
-                    class="fa-solid fa-clock-rotate-left"
+                    class="fa-solid fa-users"
                     style={{ paddingRight: "10px" }}
                   ></i>
-                  History
-                </a>
+CV Builder                </a>
               </li>
+           
               <li>
                 <button
                   href="#"
