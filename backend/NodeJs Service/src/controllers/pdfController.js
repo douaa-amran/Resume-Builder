@@ -4,7 +4,7 @@ import Resume from '../models/Resume.js';
 export async function generatePDF(req, res) {
     const { personalInfo, summary, experiences, educations, languages, skills, projects, certificates, selectedTemplate } = req.body;
     
-
+  console.log(req.body);
     try {
         console.log('Received request to generate PDF');
 
