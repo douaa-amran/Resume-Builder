@@ -51,7 +51,7 @@ To run this project locally, follow these steps:
    cd backend
     npm run dev
 6. Start the frontend server:
-  ```sh
+   ```sh
    cd frontend
     npm run dev
 
