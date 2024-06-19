@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addExperience } from '../features/resume/ResumeSlice'; // Adjust the import path as necessary
 
 const ExperienceForm = () => {
+  const dispatch = useDispatch();
   const [experiences, setExperiences] = useState([
     { id: 1, company: '', position: '', startDate: '', endDate: '', description: '' }
   ]);
 
-  const addExperience = () => {
+  const addNewExperience = () => {
     setExperiences([...experiences, {
       id: experiences.length + 1,
       company: '',
@@ -20,11 +23,15 @@ const ExperienceForm = () => {
     setExperiences(experiences.map(exp => exp.id === id ? { ...exp, [field]: value } : exp));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    experiences.forEach(exp => dispatch(addExperience(exp)));
+  };
+
   return (
-    <div className="p-3">
+    <form className="p-3" onSubmit={handleSubmit}>
       <h1 className="text-3xl font-bold mb-5">Work Experience</h1>
       {experiences.map(({ id, company, position, startDate, endDate, description }) => (
-        <>
         <div key={id} className="mb-5">
           <div className="grid grid-cols-2 gap-2">
             <div>
@@ -96,19 +103,25 @@ const ExperienceForm = () => {
               required
             />
           </div>
+          {experiences.length !== 1 && <hr className="my-4 border-gray-200" />}
         </div>
-        {experiences.length !== 1 && <hr className="my-4 border-gray-200" />}
-        </>
       ))}
       <button
         type="button"
-        onClick={addExperience}
+        onClick={addNewExperience}
         className="text-white py-2 px-4 rounded-lg cursor-pointer w-full"
         style={{ background: '#D2649A' }}
       >
         Add Another Experience
       </button>
-    </div>
+      <button
+        type="submit"
+        className="text-white py-2 px-4 rounded-lg cursor-pointer w-full mt-3"
+        style={{ background: '#D2649A' }}
+      >
+        Save Experience
+      </button>
+    </form>
   );
 };
 

@@ -2,14 +2,24 @@ import { launch } from 'puppeteer';
 import Resume from '../models/Resume.js';
 
 export async function generatePDF(req, res) {
-  const { content } = req.body; // The resume content from the request body
+  const { personalInfo, summary, experiences, educations, languages, skills, projects, certificates, selectedTemplate } = req.body;
 
   try {
     console.log('Received request to generate PDF');
 
     const newResume = new Resume({
       user: req.user.id, // Assuming you have the user ID from authenticated user
-      content,
+      content: {
+        personalInfo,
+        summary,
+        experiences,
+        educations,
+        languages,
+        skills,
+        projects,
+        certificates,
+        selectedTemplate
+      }
     });
 
     // Save the resume to the database
@@ -59,27 +69,55 @@ export async function generatePDF(req, res) {
               <h1>Resume</h1>
               <div class="section">
                 <h2>Name</h2>
-                <p>${content.name}</p>
+                <p>${personalInfo.firstName} ${personalInfo.lastName}</p>
               </div>
               <div class="section">
                 <h2>Email</h2>
-                <p>${content.email}</p>
+                <p>${personalInfo.email}</p>
               </div>
               <div class="section">
                 <h2>Phone</h2>
-                <p>${content.phone}</p>
+                <p>${personalInfo.phone}</p>
               </div>
               <div class="section">
-                <h2>Education</h2>
-                <p>${content.education}</p>
+                <h2>Summary</h2>
+                <p>${summary}</p>
               </div>
               <div class="section">
                 <h2>Experience</h2>
-                <p>${content.experience}</p>
+                <ul>
+                  ${experiences.map(exp => `<li>${exp.title} at ${exp.company}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="section">
+                <h2>Education</h2>
+                <ul>
+                  ${educations.map(edu => `<li>${edu.degree} in ${edu.fieldOfStudy} at ${edu.school}</li>`).join('')}
+                </ul>
+              </div>
+              <div class="section">
+                <h2>Languages</h2>
+                <ul>
+                  ${languages.map(lang => `<li>${lang.language} (${lang.proficiency})</li>`).join('')}
+                </ul>
               </div>
               <div class="section">
                 <h2>Skills</h2>
-                <p>${content.skills}</p>
+                <ul>
+                  ${skills.map(skill => `<li>${skill.skill} (${skill.level})</li>`).join('')}
+                </ul>
+              </div>
+              <div class="section">
+                <h2>Projects</h2>
+                <ul>
+                  ${projects.map(proj => `<li>${proj.name} (${proj.description})</li>`).join('')}
+                </ul>
+              </div>
+              <div class="section">
+                <h2>Certificates</h2>
+                <ul>
+                  ${certificates.map(cert => `<li>${cert.name} (${cert.organization})</li>`).join('')}
+                </ul>
               </div>
             </div>
           </body>

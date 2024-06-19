@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addEducation } from '../features/resume/ResumeSlice'; // Adjust the import path as necessary
 
 const EducationForm = () => {
+  const dispatch = useDispatch();
+
+  // State for managing multiple educations
   const [educations, setEducations] = useState([
     { id: 1, institution: '', degree: '', startDate: '', endDate: '' }
   ]);
 
-  const addEducation = () => {
+  // Function to add a new education entry
+  const addEducationField = () => {
     setEducations([...educations, {
       id: educations.length + 1,
       institution: '',
@@ -15,15 +21,22 @@ const EducationForm = () => {
     }]);
   };
 
+  // Function to handle input changes in education fields
   const handleInputChange = (id, field, value) => {
     setEducations(educations.map(edu => edu.id === id ? { ...edu, [field]: value } : edu));
   };
 
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Dispatch action to save all educations to Redux state
+    educations.forEach(edu => dispatch(addEducation(edu)));
+  };
+
   return (
-    <div className="p-3">
+    <form className="p-3" onSubmit={handleSubmit}>
       <h1 className="text-3xl font-bold mb-5">Education Information</h1>
       {educations.map(({ id, institution, degree, startDate, endDate }) => (
-        <>
         <div key={id} className="mb-5">
           <div className="grid grid-cols-2 gap-2">
             <div>
@@ -82,19 +95,25 @@ const EducationForm = () => {
               />
             </div>
           </div>
+          {educations.length !== 1 && <hr className="my-4 border-gray-200" />}
         </div>
-        {educations.length !== 1 && <hr className="my-4 border-gray-200" />}
-        </>
       ))}
       <button
         type="button"
-        onClick={addEducation}
+        onClick={addEducationField}
         className="text-white py-2 px-4 rounded-lg cursor-pointer w-full"
         style={{ background: '#D2649A' }}
       >
         Add Another Education
       </button>
-    </div>
+      <button
+        type="submit"
+        className="text-white py-2 px-4 rounded-lg cursor-pointer w-full mt-3"
+        style={{ background: '#D2649A' }}
+      >
+        Save Education
+      </button>
+    </form>
   );
 };
 

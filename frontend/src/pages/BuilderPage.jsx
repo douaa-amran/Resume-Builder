@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Certification from "../components/CertificationForm";
 import EducationForm from "../components/EducationForm";
 import ExperienceForm from "../components/ExperienceForm";
@@ -16,8 +17,33 @@ import Template3 from "../components/Template3";
 import "../styles/home.css";
 
 export default function BuilderPage() {
+  const dispatch = useDispatch();
+  const resumeState = useSelector((state) => state.resume);
+  const { selectedTemplate: reduxSelectedTemplate } = resumeState; // Rename to avoid conflict
+
   const [selectedSection, setSelectedSection] = useState("Personal Info");
-  const [selectedTemplate, setSelectedTemplate] = useState("Template1");
+  const [localSelectedTemplate, setLocalSelectedTemplate] = useState("Template1"); // Rename to avoid conflict
+  console.log(localStorage.getItem('token'))
+
+  const handleDownloadResume = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:8005/api/pdf/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          ...resumeState,
+          selectedTemplate: localSelectedTemplate // Use localSelectedTemplate here
+        }),
+      });
+      // Handle response as needed (e.g., download PDF)
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+    }
+  };
 
   const renderForm = () => {
     switch (selectedSection) {
@@ -43,7 +69,7 @@ export default function BuilderPage() {
   };
 
   const renderTemplate = () => {
-    switch (selectedTemplate) {
+    switch (localSelectedTemplate) { // Use localSelectedTemplate here
       case "Template1":
         return <Template1 />;
       case "Template2":
@@ -60,10 +86,18 @@ export default function BuilderPage() {
       <Header />
       <div className="content-container">
         <Menu setSelectedSection={setSelectedSection} />
-        <div className='form'>{renderForm()}</div>
+        <div className="form">{renderForm()}</div>
         <div className="cv-preview">
           {renderTemplate()}
-          <TemplateDropdown setSelectedTemplate={setSelectedTemplate} />
+          <TemplateDropdown setSelectedTemplate={setLocalSelectedTemplate} />
+          <button
+            type="button"
+            className="text-white p-2 rounded-lg w-full"
+            style={{ background: "#D2649A" }}
+            onClick={handleDownloadResume}
+          >
+            Download Resume
+          </button>
         </div>
       </div>
     </div>

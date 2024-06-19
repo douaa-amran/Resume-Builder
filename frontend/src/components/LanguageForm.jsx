@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addLanguage } from '../features/resume/ResumeSlice'; // Adjust the import path as necessary
 
 export default function LanguageForm() {
+  const dispatch = useDispatch();
+
+  // State for managing multiple languages
   const [languages, setLanguages] = useState([{ id: 1, language: '', level: '' }]);
 
+  // Function to add a new language entry
   const addLanguageForm = () => {
-    setLanguages([...languages, { id: languages.length + 1, language: '', level: '' }]);
+    setLanguages([...languages, {
+      id: languages.length + 1,
+      language: '',
+      level: ''
+    }]);
   };
 
+  // Function to handle input changes in language fields
   const handleInputChange = (id, field, value) => {
     setLanguages(languages.map(lang => lang.id === id ? { ...lang, [field]: value } : lang));
+  };
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Dispatch action to save all languages to Redux state
+    languages.forEach(lang => dispatch(addLanguage(lang)));
   };
 
   return (
     <form className="p-3 flex flex-col justify-center gap-3">
       <h1 className="text-3xl font-bold mb-5">Language Info</h1>
       {languages.map(({ id, language, level }) => (
-        <>
         <div key={id} className="grid grid-cols-2 gap-2">
           <div>
             <label
@@ -50,16 +67,23 @@ export default function LanguageForm() {
             />
           </div>
         </div>
-        {languages.length !== 1 && <hr className="my-4 border-gray-200" />}
-        </>
       ))}
+      {languages.length !== 1 && <hr className="my-4 border-gray-200" />}
       <button
         type="button"
         onClick={addLanguageForm}
-        className="text-white py-2 px-4 rounded-lg cursor-pointer  transition"
-        style={{"background":"#D2649A"}}
+        className="text-white py-2 px-4 rounded-lg cursor-pointer transition"
+        style={{ background: '#D2649A' }}
       >
         Add Another Language
+      </button>
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        className="text-white py-2 px-4 rounded-lg cursor-pointer transition mt-3"
+        style={{ background: '#D2649A' }}
+      >
+        Save Languages
       </button>
     </form>
   );

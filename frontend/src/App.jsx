@@ -11,7 +11,7 @@ function App() {
   const isLoginRoute = location.pathname === "/login" || location.pathname === "/register";
 
   return (
-    <div className={`${isLoginRoute ? 'bg-[#8E3E63] min-h-screen flex justify-center items-center' : ''}`}>
+    <div className={`${isLoginRoute ? 'bg-[#8E3E63] min-h-screen flex justify-center items-center' : 'container'}`}>
       <Routes>
         <Route path="/login" element={<Login />} />
          <Route path="/register" element={<Register />} />

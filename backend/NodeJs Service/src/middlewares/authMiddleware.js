@@ -3,13 +3,15 @@ import { jwtSecret } from "../config/initialConfig.js";
 
 // Middleware to validate JWT tokens
 export default function auth(req, res, next) {
-  // Extract the token from the Authorization header
-  const token = req.header("Authorization").replace("Bearer ", "");
+  // Extract the token from the Authorization header if present
+  const authHeader = req.header("Authorization");
 
-  // Deny access if the token is not provided
-  if (!token) {
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ message: "No token, authorization denied" });
   }
+
+  // Extract the token from the header
+  const token = authHeader.replace("Bearer ", "");
 
   try {
     // Verify the token using the secret key
