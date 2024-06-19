@@ -55,3 +55,11 @@ export async function loginUser(req, res) {
     res.status(500).json({ message: "Server Error" });
   }
 }
+
+export const  logout_User = async(req, res) => {
+  
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, 'passwordkey');
+  const newToken = jwt.sign({ userId: decodedToken.userId }, 'passwordkey', { expiresIn: '0s' });
+  res.json({ token: newToken });
+} 
