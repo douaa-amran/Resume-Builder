@@ -59,19 +59,19 @@ export async function generatePDF(req, res) {
                             <h2 style="font-size: 18px; margin: 0;">${personalInfo.firstName} ${personalInfo.lastName}</h2>
                           </div>
                           <div class="contact-info" style="text-align: center;">
-                            <p style="font-size: 10px; background-color: #E5E5E5; border-radius: 10px; padding: 5px; text-align: center; margin-top: 5px;"><strong>${personalInfo.phone}</strong></p>
+                            <p style="font-size: 10px; background-color: #E5E5E5; border-radius: 10px; padding: 5px; text-align: center; margin-top: 5px;"><strong>${personalInfo.phoneNumber}</strong></p>
                             <p style="font-size: 10px; background-color: #E5E5E5; border-radius: 10px; padding: 5px; text-align: center; margin-top: 5px;"><strong>${personalInfo.email}</strong></p>
                           </div>
                           <div class="certificates" style="margin-top: 10px;">
                             <h3 style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">Certificates</h3>
                             <div class="certificate-item" style="display: flex; justify-content: space-between; font-size: 10px;">
-                              ${certificates.map(cert => `<p>${cert.name} (${cert.organization})</p>`).join('')}
+                              ${certificates.map(cert => `<p>${cert.title} (${cert.organization})</p>`).join('')}
                             </div>
                           </div>
                           <div class="languages" style="margin-top: 10px;">
                             <h3 style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">Languages</h3>
                             <div class="language-item" style="display: flex; justify-content: space-between; font-size: 10px;">
-                              ${languages.map(lang => `<p>${lang.language} (${lang.proficiency})</p>`).join('')}
+                              ${languages.map(lang => `<p>${lang.language} (${lang.level})</p>`).join('')}
                             </div>
                           </div>
                           <div class="skills" style="margin-top: 10px;">
@@ -84,7 +84,7 @@ export async function generatePDF(req, res) {
                           <div class="projects" style="margin-top: 10px;">
                             <h3 style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">Projects</h3>
                             <div class="project-item" style="display: flex; justify-content: space-between; font-size: 10px;">
-                              ${projects.map(proj => `<p>${proj.name} (${proj.description})</p>`).join('')}
+                              ${projects.map(proj => `<p>${proj.title} (${proj.description})</p>`).join('')}
                             </div>
                           </div>
                           <div class="links" style="margin-top: 10px;">
@@ -107,12 +107,12 @@ export async function generatePDF(req, res) {
                         <div class="education">
                           <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">Education</h2>
                           <div class="separator" style="height: 1px; width: 30px; background-color: #3182ce; margin-bottom: 10px;"></div>
-                          ${educations.map(edu => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${edu.degree} in ${edu.fieldOfStudy} at ${edu.school}</p>`).join('')}
+                          ${educations.map(edu => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${edu.degree} at ${edu.institution}</p>`).join('')}
                         </div>
                         <div class="experience">
                           <h2 style="font-size: 16px; font-weight: bold; margin-bottom: 10px;">Experience</h2>
                           <div class="separator" style="height: 1px; width: 30px; background-color: #3182ce; margin-bottom: 10px;"></div>
-                          ${experiences.map(exp => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${exp.title} at ${exp.company}</p>`).join('')}
+                          ${experiences.map(exp => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${exp.position} at ${exp.company}</p>`).join('')}
                         </div>
                       </div>
                     </div>
@@ -187,7 +187,7 @@ export async function generatePDF(req, res) {
                                                                       style="min-width:150px;width: 150px;margin:0px;padding:0px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
                                                                       <div bis_skin_checked="1"
                                                                           style="color:rgb(255, 255, 255);font-size:11px;line-height:11px;margin-bottom:6px;margin:0px 0px 6px;padding:0px;border:0px none rgb(255, 255, 255);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
-                                                                          ${personalInfo.phone} <div bis_skin_checked="1"
+                                                                          ${personalInfo.phoneNumber} <div bis_skin_checked="1"
                                                                               style="margin-top:6px;color:rgb(255, 255, 255);font-size:11px;line-height:11px;padding:0px;border:0px none rgb(255, 255, 255);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
                                                                               </div>
                                                                       </div>
@@ -214,7 +214,7 @@ export async function generatePDF(req, res) {
                                                                           style="position:relative;margin-bottom:4px;margin:0px 0px 4px;padding:0px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
                                                                           <span
                                                                               style="font-size:10px;line-height:10px;display:block;font-weight:700;color:rgb(91, 80, 155);margin:0px;padding:0px;border:0px none rgb(91, 80, 155);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">Human
-                                                                              ${experiences.map(exp => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${exp.title} at ${exp.company}</p>`).join('')}</span></h3>
+                                                                              ${experiences.map(exp => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${exp.position} at ${exp.company}</p>`).join('')}</span></h3>
                                                                    
                                                                   </div>
                                                              
@@ -232,7 +232,7 @@ export async function generatePDF(req, res) {
                                                                               style="font-weight:700;font-size:10px;line-height:11px;margin-bottom:3px;display:flex;justify-content:space-between;width: 100%;margin:0px 0px 3px;padding:0px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">Masters
                                                                               <i
                                                                                   style="font-family:Arial, sans-serif;font-weight:400;font-style:normal;display:block;font-size:8px;line-height:10px;padding-left:6px;margin:0px;padding:0px 0px 0px 6px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">September
-                                                                                  ${educations.map(edu => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${edu.degree} in ${edu.fieldOfStudy} at ${edu.school}</p>`).join('')}
+                                                                                  ${educations.map(edu => `<p style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">${edu.degree} at ${edu.institution}</p>`).join('')}
                                                                               </i></span></h3>
                                                                      
                                                                   </div>
@@ -248,7 +248,7 @@ export async function generatePDF(req, res) {
                                                                           style="position:relative;margin-bottom:4px;margin:0px 0px 4px;padding:0px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
                                                                           <span
                                                                               style="margin-bottom:3px;display:flex;justify-content:space-between;font-size:10px;line-height:10px;padding:0px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;"><abbr
-                                                                                  style="font-style:normal;display:block;color:rgb(91, 80, 155);font-weight:700;margin:0px;padding:0px;border:0px none rgb(91, 80, 155);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">             ${certificates.map(cert => `<p>${cert.name} (${cert.organization})</p>`).join('')}
+                                                                                  style="font-style:normal;display:block;color:rgb(91, 80, 155);font-weight:700;margin:0px;padding:0px;border:0px none rgb(91, 80, 155);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">             ${certificates.map(cert => `<p>${cert.title} (${cert.organization})</p>`).join('')}
                   
                                                                                   </abbr><i
                                                                                   style="font-family:Arial, sans-serif;font-weight:400;font-style:normal;padding-left:15px;display:block;font-size:8px;line-height:8px;margin:0px;padding:0px 0px 0px 15px;border:0px none rgb(0, 0, 0);vertical-align:baseline;-webkit-font-smoothing:antialiased;box-sizing:border-box;">
