@@ -36,7 +36,7 @@ export async function generatePDF(req, res) {
             });
             const page = await browser.newPage();
             switch (selectedTemplate) {
-                case 'template1':
+                case 'Template1':
                     // Code for handling template1
                     console.log("Handling template1");
                     // Add your logic here
@@ -123,7 +123,7 @@ export async function generatePDF(req, res) {
                          
                     break;
             
-                case 'template2':
+                case 'Template2':
                     // Code for handling template2
                     console.log("Handling template2");
                     // Add your logic here
