@@ -39,11 +39,25 @@ export default function BuilderPage() {
           selectedTemplate: localSelectedTemplate // Use localSelectedTemplate here
         }),
       });
-      // Handle response as needed (e.g., download PDF)
+  
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'resume.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      } else {
+        console.error('Failed to download resume:', response.statusText);
+      }
     } catch (error) {
       console.error('Error downloading resume:', error);
     }
   };
+  
 
   const renderForm = () => {
     switch (selectedSection) {
