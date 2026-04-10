@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import API_BASE_URL from "../config/api";
 
 export default function Header() {
     const userEmail = localStorage.getItem('userEmail'); // Retrieve user's email from localStorage
@@ -7,7 +8,7 @@ export default function Header() {
         try {
           const token = localStorage.getItem("token");
     
-          await axios.post("http://localhost:8005/api/auth/logout", null, {
+          await axios.post(`${API_BASE_URL}/api/auth/logout`, null, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

@@ -4,6 +4,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import BuilderPage from "./pages/BuilderPage";
+import HomePage from "./pages/HomePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import FileUpload from "./components/FileUpload";
 
@@ -13,15 +14,18 @@ function App() {
   const isLoginRoute =
     location.pathname === "/login" || location.pathname === "/register";
 
+  const isHomeRoute = location.pathname === "/";
+
   return (
     <div
       className={`${
-        isLoginRoute
-          ? "bg-[#8E3E63] min-h-screen flex justify-center items-center"
+        isLoginRoute || isHomeRoute
+          ? "w-screen h-screen flex justify-center items-center overflow-hidden"
           : "container"
       }`}
     >
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/login"
           element={

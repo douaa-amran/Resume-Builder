@@ -14,6 +14,7 @@ import TemplateDropdown from "../components/TemplateDropdown";
 import Template1 from "../components/Template1";
 import Template2 from "../components/Template2";
 import Template3 from "../components/Template3";
+import API_BASE_URL from "../config/api";
 import "../styles/home.css";
 
 export default function BuilderPage() {
@@ -28,7 +29,7 @@ export default function BuilderPage() {
   const handleDownloadResume = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:8005/api/pdf/generate', {
+      const response = await fetch(`${API_BASE_URL}/api/pdf/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
